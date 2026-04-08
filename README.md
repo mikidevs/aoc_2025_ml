@@ -2,14 +2,14 @@
 
 ## Language
 
-Ocaml
+Elixir
 
 ## Auto download input
 
 Paste session id into aoc.sh
 Run `./aoc.sh year day` to download input file and create the source file
 
-e.g. `./aoc.sh 2023 01`
+e.g. `./aoc.sh 2025 01`
 
 ## Progress
 
