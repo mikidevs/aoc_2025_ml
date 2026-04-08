@@ -1,5 +1,5 @@
 defmodule Day01 do
-  def parse(input) do
+  defp parse(input) do
     input
     |> String.split
     |> Enum.map(fn st ->
@@ -8,7 +8,7 @@ defmodule Day01 do
      end)
   end
 
-  def part1(turns) do
+  defp part1(turns) do
     Enum.map(turns, fn {f, s} ->
       op = case f do
         "R" -> &+/2
@@ -23,7 +23,7 @@ defmodule Day01 do
     |> elem(1)
   end
 
-  def part2(turns) do
+  defp part2(turns) do
     Enum.reduce(turns, {50,0}, fn {dir, am}, {c, n} ->
       case dir do
         "R" -> {rem(c + am, 100), n + div(c + am, 100)}
@@ -41,8 +41,7 @@ defmodule Day01 do
 
   def solve do
     input = parse(Reader.read_file("inputs/202501.txt"))
-    # IO.puts("p1: #{Integer.to_string(part1(input))}")
-    # IO.puts("p2: #{Integer.to_string(part2(input))}")
+    IO.inspect(part1(input))
     IO.inspect(part2(input))
   end
 end

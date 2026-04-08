@@ -14,34 +14,10 @@ AOC_SESSION_COOKIE="53616c7465645f5f27f731a855ee1d06ad8f1e55d25d56841556a6ae8820
 DAY_PADDED=$(printf "%02d" "$DAY")
 DAY_NO_ZEROS=$(echo "$DAY" | sed 's/^0*//')
 
-BASE="years/y${YEAR}"
 INPUT_NAME="${YEAR}${DAY}.txt"
 
-mkdir -p "$BASE"
-
-# Create main.ml if missing
-if [ ! -f "$BASE/day${DAY_PADDED}.ml" ]; then
-  cat > "$BASE/day${DAY_PADDED}.ml" <<EOF
-open Core
-open Aoc
-
-let input = In_channel.read_all "inputs/${INPUT_NAME}"
-
-let part1 input =
-  input |> String.length
-
-let part2 input =
-  input |> String.length
-
-let solve =
-  Printf.printf "p1: %d\np2: %d\n"
-    (part1 input)
-    (part2 input)
-EOF
-fi
-
 # Download input if missing
-if [ ! -f "$BASE/input.txt" ]; then
+if [ ! -f "inputs/$INPUT_NAME" ]; then
   PUZZLE_URL="https://adventofcode.com/${YEAR}/day/${DAY_NO_ZEROS}/input"
   curl "$PUZZLE_URL" \
     -H "cookie: session=${AOC_SESSION_COOKIE}" \
