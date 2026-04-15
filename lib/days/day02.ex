@@ -6,6 +6,15 @@ defmodule Day02 do
     l == r
   end
 
+  defp part1(input) do
+    Enum.map(input, fn s ->
+      [s, e] = String.split(s, "-", parts: 2) |> Enum.map(&String.to_integer/1)
+      l = for n <- s..e, invalid1?(n), do: n
+      Enum.sum(l)
+    end)
+    |> Enum.sum
+  end
+
   defp periodic?(s, f) do
     chunk = binary_part(s, 0, f)
     check_period(s, chunk, f)
@@ -27,14 +36,6 @@ defmodule Day02 do
     end)
   end
 
-  defp part1(input) do
-    Enum.map(input, fn s ->
-      [s, e] = String.split(s, "-", parts: 2) |> Enum.map(&String.to_integer/1)
-      l = for n <- s..e, invalid1?(n), do: n
-      Enum.sum(l)
-    end)
-    |> Enum.sum
-  end
 
   defp part2(input) do
     Enum.map(input, fn s ->
